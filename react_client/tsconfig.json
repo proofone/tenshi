@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "isolatedModules": true,
+    "composite": true,
+    "noEmit": false,
+    "rootDir": "../",
+    "outDir": "./public/",
+    "declarationDir": "./types/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": false
+  },
+  "include": ["../node_server/models/**/*", "../tests/*", "./**/*"],
+  "exclude": ["webpack.config.js", "src/App.ts"]
+}
