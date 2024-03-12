@@ -12,17 +12,19 @@ interface PostContent {
 }
 export interface Conversation {
     participant_ids: string[];
+    last_msg_date: Date;
+    last_msg_snip: string;
+    last_msg_seen_ids: string[];
 }
 export interface Message extends BaseMessage {
     content: string;
     convo_id: string;
     recipient_id?: string;
 }
-export interface Post extends BaseMessage {
-    content: PostContent;
+export interface Post extends BaseMessage, PostContent {
 }
 export interface Media extends BaseMessage {
-    text: string;
+    caption: string;
     ext_id?: string;
     url?: string;
 }
