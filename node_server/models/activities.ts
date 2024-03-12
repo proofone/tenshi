@@ -11,15 +11,6 @@ interface BaseActivity {
     media_ids?: string[]
 }
 /**
- * To record contributions of Users to Tasks
-*/
-export interface Contribution {
-    user_id: string
-    task_id: string
-    role: string
-    result: string
-}
-/**
  * The highest level activity. Parent_id can point to a parent {@link Project}.
 */
 export interface Project extends BaseActivity { //to other collection
@@ -41,4 +32,14 @@ export interface Task extends BaseActivity {
     cost_est?: string
     work_est?: string
     responsible_id?: string
+    contributions?: Contribution[]
+}
+/**
+ * To record contributions of Users to Tasks
+*/
+export interface Contribution {
+    user_id: string
+    task_id: string
+    role: string
+    result: string
 }
