@@ -2,9 +2,10 @@
 
 $primary: #09865cbb;
 $border-radius: .1rem;
+$footer-height: 3em;
 
 body {
-    padding-bottom: 3em;
+    padding-bottom: $footer-height;
 }
 
 .newsfeed-post {

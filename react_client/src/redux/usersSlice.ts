@@ -14,6 +14,8 @@ export interface usersState {
 const initialState: usersState = {
     users: testUsers
 }
+
+// indexedDB initialization, can be omitted
 let success, idb
 createDB().then(res => {[success, idb] = res})
 console.log(`IDB created: ${idb}`)
