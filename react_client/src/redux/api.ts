@@ -1,13 +1,17 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type { brahmaUser } from '../../../node_server/models/user'
 import { Action, Task, Contribution } from '../../../node_server/models/activities'
+import { Post } from '../../../node_server/models/messages'
 
 
 // Define a service using a base URL and expected endpoints
-export const userApi = createApi({
-  reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
+export const apiSlice = createApi({
+  reducerPath: 'api',
+  baseQuery: fetchBaseQuery({ baseUrl: '/fakeApi' }),
   endpoints: (builder) => ({
+    getPosts: builder.query<Post[], string>({
+      query: () => `posts/`,
+    }),
     getUsers: builder.query<brahmaUser[], string>({
       query: () => `users/`,
     }),
@@ -17,7 +21,7 @@ export const userApi = createApi({
   }),
 })
 
-export const actionApi = createApi({  // TODO: 
+export const actionApi = createApi({  // TODO: not needed?
   reducerPath: 'actionApi',
   baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
   endpoints: (builder) => ({
@@ -32,5 +36,4 @@ export const actionApi = createApi({  // TODO:
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetUsersQuery, useGetUserByIdQuery } = userApi
-export const { useGetActionsQuery, useGetActionByIdQuery } = actionApi
+export const { useGetPostsQuery, useGetUsersQuery, useGetUserByIdQuery } = apiSlice

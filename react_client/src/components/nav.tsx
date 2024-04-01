@@ -1,11 +1,11 @@
-import * as React from "react";
+import React from "react";
 import { FC } from "react";
 import { Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { BsIcon } from "./misc";
 
 
-export const TenshiNav: FC = () => {
+export const TenshiNav = () => {
     const navEl = <Navbar fixed='bottom' className="d-flex justify-content-around border-top">
         <NavLink to="/search" className="flex-grow-1 text-center">
             <BsIcon cls="radar" size={3}></BsIcon>

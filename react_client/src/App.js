@@ -4,18 +4,16 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 
 import { TenshiRoot } from './components/misc';
-import { NewsFeed } from './components/mainfeed';
+import { NewsFeed } from './components/newsfeed';
 import { UserList, UserDetail } from './components/user';
 import './scss/styles.scss';
 import 'bootstrap-icons/font/bootstrap-icons.scss'
+import { SearchElement } from './components/search';
 
-
-export let errorlog = []
-export const debugInfoBox = document.querySelector("#debug-info")
 
 const root = createRoot(document.getElementById('content'))
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
     {
         path: "/",
         element: <TenshiRoot />,
@@ -27,7 +25,7 @@ const router = createBrowserRouter([
 
             {
                 path: "search/",
-                element: <NewsFeed />,
+                element: <SearchElement />,
                 // loader: async () => {
                 //     const response = await fetch(`/api/users/`);
                 //     return await response.json();}
@@ -80,7 +78,7 @@ const router = createBrowserRouter([
         //        errorElement: <ErrorPage />,
             },
             {
-                path: "app/communities/:commId",
+                path: "communities/:commId",
                 element: <div>Community details...</div>,
                 loader: ({ params }) => params
         //        errorElement: <ErrorPage />,

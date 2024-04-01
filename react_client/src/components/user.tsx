@@ -1,24 +1,29 @@
-import * as React from "react";
+import React from "react";
 import {FC, useState} from "react";
 import {Link, useLoaderData} from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { usersState } from "../redux/usersSlice";
-import { BsIcon } from "./misc";
+import { BsIcon, LoadingSpinner } from "./misc";
 import { useGetUsersQuery, useGetUserByIdQuery } from "../redux/api";
 
 
 interface UserDetailProps {userId: string}
 
-export const UserList: FC = () => {
+export const UserListItem = () => {
+
+}
+
+export const UserList = () => {
     const usersData = useAppSelector(state => state.users.users)
     const dispatch = useAppDispatch()
-    //const fetchedUsers: usersState = useLoaderData() as usersState // TODO: with redux?
     const { data, error, isLoading } = useGetUsersQuery('')
+
+    error && console.warn(error.toString())
 
     return <div>
         <div>Users:</div>
         {isLoading
-            ? <span>Loading...</span>
+            ? <LoadingSpinner />
             : usersData 
                 ? usersData.map((u, i) => {
                     return <Link to={String(u.pk)}><div key={i}><BsIcon {...{cls: "person"}}/>{u.fields.username}</div></Link>
@@ -27,7 +32,7 @@ export const UserList: FC = () => {
     </div>
 }
 
-export const UserDetail: FC = () => {
+export const UserDetail = () => {
     const usersData = useAppSelector(state => state.users.users)
     const dispatch = useAppDispatch()
     const urlParams = useLoaderData() as UserDetailProps
