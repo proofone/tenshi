@@ -4,27 +4,28 @@ import { factory, oneOf, manyOf, primaryKey } from '@mswjs/data'
 import { nanoid } from '@reduxjs/toolkit'
 import { faker } from '@faker-js/faker'
 import { Server as MockSocketServer } from 'mock-socket'
-
 import { parseISO } from 'date-fns'
+
+import { posts } from './newsfeed_test_data'
+import { testUsers } from './users_test_data'
 
 const NUM_USERS = 3
 const POSTS_PER_USER = 3
 const RECENT_NOTIFICATIONS_DAYS = 7
 
 // Add an extra delay to all endpoints, so loading spinners show up.
-const ARTIFICIAL_DELAY_MS = 2000
+const ARTIFICIAL_DELAY_MS = 1000
 
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-/* RNG setup */
-
+// RNG setup
 // Set up a seeded random number generator, so that we get
 // a consistent set of users / entries each time the page loads.
 // This can be reset by deleting this localStorage value,
 // or turned off by setting `useSeededRNG` to false.
-let useSeededRNG = true
+let useSeededRNG = false
 
 if (useSeededRNG) {
   let randomSeedString = localStorage.getItem('randomTimestampSeed')
@@ -88,25 +89,27 @@ export const db = factory({
 })
 
 const createUserData = () => {
-  const firstName = faker.person.firstName()
-  const lastName = faker.person.lastName()
+  // const firstName = faker.person.firstName()
+  // const lastName = faker.person.lastName()
 
-  return {
-    firstName,
-    lastName,
-    name: `${firstName} ${lastName}`,
-    username: faker.internet.userName(),
-  }
+  // return {
+  //   firstName,
+  //   lastName,
+  //   name: `${firstName} ${lastName}`,
+  //   username: faker.internet.userName(),
+  // }
+  return posts
 }
 
 const createPostData = (user) => {
-  return {
-    title: faker.lorem.words(),
-    date: faker.date.recent({ days: RECENT_NOTIFICATIONS_DAYS }).toISOString(),
-    user,
-    content: faker.lorem.paragraphs(),
-    reactions: db.reaction.create(),
-  }
+  // return {
+  //   title: faker.lorem.words(),
+  //   date: faker.date.recent({ days: RECENT_NOTIFICATIONS_DAYS }).toISOString(),
+  //   user,
+  //   content: faker.lorem.paragraphs(),
+  //   reactions: db.reaction.create(),
+  // }
+  return posts
 }
 
 // Create an initial set of users and posts
@@ -128,7 +131,7 @@ const serializePost = (post) => ({
 
 export const handlers = [
   http.get('/fakeApi/posts', async function () {
-    const posts = db.post.getAll().map(serializePost)
+    // const posts = db.post.getAll().map(serializePost)
     await delay(ARTIFICIAL_DELAY_MS)
     return HttpResponse.json(posts)
   }),
@@ -216,7 +219,7 @@ export const handlers = [
   }),
   http.get('/fakeApi/users', async () => {
     await delay(ARTIFICIAL_DELAY_MS)
-    return HttpResponse.json(db.user.getAll())
+    return HttpResponse.json(testUsers)
   }),
 ]
 

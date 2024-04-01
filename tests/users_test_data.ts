@@ -1,4 +1,40 @@
-export const testUsers = [
+import { brahmaCommunity, brahmaUser, userPreferences } from "../node_server/models/user";
+
+
+export const testUserPrefs: userPreferences = {
+    search_area: {
+        point: {
+            type: "Point",
+            coordinates: [19.1119, 47.419]
+          },
+        radius: 1000                
+    },
+  
+    follows: {
+      topic_ids: ["food", "nature"],
+      user_ids: [2, 3],
+      community_ids: [],
+      entity_ids: []
+    },
+    
+    contactability: {
+      by: {
+        comms: false,
+        users: true,
+        otherents: false 
+      },
+      not_by: {
+        user_ids: [4]
+      }
+    },
+  
+    theme: "auto",
+
+    privacy_consents: [{necessary: true}],
+  
+}
+
+export const testUsers: brahmaUser[] = [
     {
         "model": "entities.user",
         "pk": 10,
@@ -89,4 +125,34 @@ export const testUsers = [
             "email": "proof87@gmail.com"
         }
     }
+]
+export const testCommunities: brahmaCommunity[] = [
+{
+    "model": "entities.community", "pk": 7, "fields":
+    { "hometown": "Repcelak" }
+},
+{
+    "model": "entities.community", "pk": 6, "fields":
+    { "hometown": "négyszögletű kerek erdő" }
+},
+{
+    "model": "entities.community", "pk": 5, "fields":
+    { "hometown": "" }
+},
+{
+    "model": "entities.community", "pk": 4, "fields":
+    { "hometown": "" }
+},
+{
+    "model": "entities.community", "pk": 3, "fields":
+    { "hometown": "" }
+},
+{
+    "model": "entities.community", "pk": 2, "fields":
+    { "hometown": "Százholdas Pagony" }
+},
+{
+    "model": "entities.community", "pk": 1, "fields":
+    { "hometown": "Baktüttös" }
+}
 ]

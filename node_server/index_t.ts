@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 app.post("/newsfeed/sendpost", (req, res) => {
     console.log(`Request received: ${req.path} ${req.body}`)
     const msg: Message = {
-        author_id: '1',
+        author_id: 1,
         //created_date: new Date(),
         content: ""
     };
@@ -32,7 +32,7 @@ app.post("/newsfeed/sendpost", (req, res) => {
 });
 app.get("/newsfeed/getpost", (req, res) => {
     console.log(`Request received: ${req.path}`)
-    const params = {}
+    const params = {'author_id': "1"}
     const sort = {_id: -1};
     const cursor = messagesColl.find(params).sort(sort).limit(100)
     cursor.toArray()
