@@ -1,11 +1,11 @@
 export const posts: ({
     key: number;
-    author: number;
+    author_id: number;
     title: string;
     text: string;
 } | {
     key: number;
-    author: number;
+    author_id: number;
     title: null;
     text: string;
 })[];

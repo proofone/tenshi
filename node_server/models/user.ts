@@ -1,4 +1,6 @@
-
+/**
+ * @param {object} point - coordinates in MongoDB format: [lon, lat]
+ */
 export interface localityArea {
   point: {
     type: "Point"
@@ -10,22 +12,22 @@ export interface localityArea {
 export interface userPreferences {
   search_area: localityArea
   
-  follows: {
-    topic_ids: []
-    user_ids: []
-    community_ids: []
-    entity_ids: []
+  follows?: {
+    topic_ids?: string[]
+    user_ids?: number[]
+    community_ids: number[]
+    entity_ids: number[]
   }
   
-  contactability: {
-    from: localityArea
-    by: {
+  contactability?: {
+    from?: localityArea
+    by?: {
       comms: Boolean 
       users: Boolean
       otherents: Boolean 
     }
-    not_by: {
-      user_ids: []
+    not_by?: {
+      user_ids: number[]
     }
   }
 
@@ -39,6 +41,14 @@ export interface brahmaUser {
   fields: {
     username: string
     email: string
+    hometown: string
+  }
+}
+
+export interface brahmaCommunity {
+  pk: number
+  fields: {
+    members?: number[]
     hometown: string
   }
 }

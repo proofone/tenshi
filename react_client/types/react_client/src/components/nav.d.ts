@@ -1,2 +1,2 @@
-import { FC } from "react";
-export declare const TenshiNav: FC;
+import React from "react";
+export declare const TenshiNav: () => React.JSX.Element;

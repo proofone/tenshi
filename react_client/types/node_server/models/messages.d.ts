@@ -1,5 +1,5 @@
 interface BaseMessage {
-    author_id: string;
+    author_id: number;
     parent_id?: string;
     created_date: Date;
     mod_date?: Date;
@@ -22,6 +22,8 @@ export interface Message extends BaseMessage {
     recipient_id?: string;
 }
 export interface Post extends BaseMessage, PostContent {
+    topics: string[];
+    tags: string[];
 }
 export interface Media extends BaseMessage {
     caption: string;
