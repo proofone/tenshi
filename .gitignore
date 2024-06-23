@@ -10,6 +10,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+node_server/dist
+types/
+
+# TSOA compiled files
+routes/
+openapiStore.ts
 
 # C extensions
 *.so

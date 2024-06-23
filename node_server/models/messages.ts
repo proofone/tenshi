@@ -3,14 +3,15 @@
 interface BaseMessage {
   author_id: number
   parent_id?: string
+  status: "draft" | "sent" | "deleted"
   created_date: Date
   mod_date?: Date
   media_ids?: string[]
 }
-interface PostContent{
+interface FeedItemContent{
   title: string
   body: string
-  sections?: PostContent[]
+  sections?: FeedItemContent[] | Media[]
 }
 export interface Conversation {
   participant_ids: string[]
@@ -23,7 +24,7 @@ export interface Message extends BaseMessage{
   convo_id: string
   recipient_id?: string
 }
-export interface Post extends BaseMessage, PostContent {
+export interface FeedItem extends BaseMessage, FeedItemContent {
   topics: string[]
   tags: string[]
 }

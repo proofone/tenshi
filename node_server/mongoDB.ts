@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
-import { Message } from './models/messages';
-import { Action } from './models/activities';
+import { Message, FeedItem } from './models/messages';
+import { Project, Action } from './models/activities';
 import { userPreferences } from './models/user';
 
 const mongoService = process.env.MONGO_SERVICE || "0.0.0.0";
@@ -10,5 +10,7 @@ const mongoClient = new MongoClient(mongoUrl);
 const database = mongoClient.db('zoldweb');
 
 export const messagesColl = database.collection<Message>('messages');
-export const activitiesColl = database.collection('activities');
-export const userPropsColl = database.collection('userprops');
+export const feedColl = database.collection<FeedItem>('newsfeed');
+export const projectsColl = database.collection<Project>('projects');
+export const activitiesColl = database.collection<Action>('activities');
+export const userPrefsColl = database.collection<userPreferences>('userprops');

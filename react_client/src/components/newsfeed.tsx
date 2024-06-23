@@ -1,7 +1,7 @@
 import React, { SyntheticEvent } from "react";
 import { Button, Card, Form } from "react-bootstrap";
-import { Post } from "../../../node_server/models/messages";
-import { useGetPostsQuery } from "../redux/api";
+import { FeedItem } from "../../../node_server/models/messages";
+import { useGetMessageQuery, useCreateMessageMutation } from "../redux/openapiStore";
 import { LoadingSpinner } from "./misc";
 
 
@@ -21,7 +21,7 @@ export const NewsFeedPostForm = () => {
     ]
 }
 
-export const FeedItem = ({ body, author_id, created_date }: Post) => {
+export const FeedItemEl = ({ body, author_id, created_date }: FeedItem) => {
     let postHeader, postFooter = ""
     postFooter = created_date.toLocaleString()
     return <Card className={"newsfeed-post"}>
@@ -41,11 +41,11 @@ export const NewsFeed = () => {
         isSuccess,
         isError,
         error
-      } = useGetPostsQuery('')
+      } = useGetMessageQuery()
     let content = [<LoadingSpinner />]
 
     if (isSuccess) {
-        content = posts.map(pprops => <FeedItem {...pprops}></FeedItem>)
+        content = posts.map(pprops => <FeedItemEl {...pprops}></FeedItemEl>)
     } else if (isError) {
         content = [<div className="text-danger">{error.toString()}</div>]
         console.log(error)
