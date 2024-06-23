@@ -8,7 +8,7 @@
     "declarationDir": "./types/",
     "sourceMap": true,
     "noImplicitAny": true,
-    "suppressExcessPropertyErrors": true,
+    "suppressExcessPropertyErrors": false,
     "strictNullChecks": true,
     "moduleResolution": "node",
     "module": "es6",

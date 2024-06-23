@@ -1,9 +1,8 @@
 import path = require('path');
 import express = require("express");
 import bodyParser = require('body-parser');
-import { Message } from './models/messages';
 import { staticOptions, publicPath } from './config';
-import { messagesColl } from './mongoDB';
+import { RegisterRoutes } from "./routes/routes";
 
 
 const PORT = process.env.PORT || 3001;
@@ -17,8 +16,13 @@ app.use(bodyParser.json())
 app.get("/", (req, res) => {
     res.render("index.html");
 });
+app.get("/app/*", (req, res) => {
+    res.render("index.html");
+});
+/*
 app.post("/newsfeed/sendpost", (req, res) => {
     console.log(`Request received: ${req.path} ${req.body}`)
+    
     const msg: Message = {
         author_id: 1,
         //created_date: new Date(),
@@ -42,9 +46,12 @@ app.get("/newsfeed/getpost", (req, res) => {
             console.log(`Error loading messages from db: ${err}`)
         })
 });
+*/
+
+RegisterRoutes(app);
 
 //Startup:
 app.listen(PORT, () => {
-    console.log(`Zoldweb NodeJS Server listening on :${PORT}`);
+    console.log(`Tenshi Server listening on 127.0.0.1:${PORT}`);
 
 });
