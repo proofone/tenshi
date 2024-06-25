@@ -7,5 +7,5 @@ export const staticOptions: Object = {
   }
 }
 
-export const publicPath: string = path.join(__dirname, '../brahma/brahma/static');
+export const publicPath: string = path.join(__dirname, '../../public');
 
