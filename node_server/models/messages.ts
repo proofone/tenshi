@@ -9,15 +9,15 @@ interface BaseMessage {
   media_ids?: string[]
 }
 interface FeedItemContent{
-  title: string
+  title?: string
   body: string
-  sections?: FeedItemContent[] | Media[]
+  sections?: Array<FeedItemContent | Media>
 }
 export interface Conversation {
   participant_ids: string[]
   last_msg_date: Date
   last_msg_snip: string
-  last_msg_seen_ids: string[]
+  last_msg_seen_by: string[]
 }
 export interface Message extends BaseMessage{
   content: string
@@ -25,8 +25,8 @@ export interface Message extends BaseMessage{
   recipient_id?: string
 }
 export interface FeedItem extends BaseMessage, FeedItemContent {
-  topics: string[]
-  tags: string[]
+  topics?: string[]
+  tags?: string[]
 }
 export interface Media extends BaseMessage {
   caption: string

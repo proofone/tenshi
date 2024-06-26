@@ -1,19 +1,19 @@
 import { FeedItem } from "../models/messages";
 import { feedColl } from "../mongoDB";
 
-export type FeedItemCreationParams = Pick<FeedItem, "content" | "convo_id" | "created_date">;
+export type FeedItemCreationParams = Pick<FeedItem, "body" | "created_date">;
 
 export class FeedService {
   public async get(id?: number, name?: string): Promise<FeedItem[]> {
+    let result: FeedItem[] | PromiseLike<FeedItem[]>
     if (id || name) {
       const result = await feedColl.findOne() // TODO: define filter
     }
-    return [{
-      content: "cont",
-      author_id: 1,
-      status: "sent",
-      created_date: new Date(1712159000000)
-    }];
+    else {
+      const cursor = feedColl.find() // TODO: params!
+      result = cursor.toArray()
+    }
+    return result
   }
 
   public create(cparams: FeedItemCreationParams): FeedItem {

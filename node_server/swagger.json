@@ -81,6 +81,176 @@
 			},
 			"MessageCreationParams": {
 				"$ref": "#/components/schemas/Pick_Message.content-or-convo_id-or-created_date_"
+			},
+			"FeedItemContent": {
+				"properties": {
+					"title": {
+						"type": "string"
+					},
+					"body": {
+						"type": "string"
+					},
+					"sections": {
+						"items": {
+							"anyOf": [
+								{
+									"$ref": "#/components/schemas/FeedItemContent"
+								},
+								{
+									"$ref": "#/components/schemas/Media"
+								}
+							]
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"body"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Media": {
+				"properties": {
+					"author_id": {
+						"type": "number",
+						"format": "double"
+					},
+					"parent_id": {
+						"type": "string"
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"draft",
+							"sent",
+							"deleted"
+						]
+					},
+					"created_date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"mod_date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"media_ids": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"caption": {
+						"type": "string"
+					},
+					"ext_id": {
+						"type": "string"
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"author_id",
+					"status",
+					"created_date",
+					"caption"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"FeedItem": {
+				"properties": {
+					"author_id": {
+						"type": "number",
+						"format": "double"
+					},
+					"parent_id": {
+						"type": "string"
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"draft",
+							"sent",
+							"deleted"
+						]
+					},
+					"created_date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"mod_date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"media_ids": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"title": {
+						"type": "string"
+					},
+					"body": {
+						"type": "string"
+					},
+					"sections": {
+						"items": {
+							"anyOf": [
+								{
+									"$ref": "#/components/schemas/FeedItemContent"
+								},
+								{
+									"$ref": "#/components/schemas/Media"
+								}
+							]
+						},
+						"type": "array"
+					},
+					"topics": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"tags": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"author_id",
+					"status",
+					"created_date",
+					"body"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Pick_FeedItem.body-or-created_date_": {
+				"properties": {
+					"created_date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"body": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"created_date",
+					"body"
+				],
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"FeedItemCreationParams": {
+				"$ref": "#/components/schemas/Pick_FeedItem.body-or-created_date_"
 			}
 		},
 		"securitySchemes": {}
@@ -106,10 +276,18 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/Message"
-									},
-									"type": "array"
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/Message"
+										},
+										{
+											"items": {
+												"$ref": "#/components/schemas/Message"
+											},
+											"type": "array"
+										}
+									],
+									"nullable": true
 								}
 							}
 						}
@@ -145,11 +323,60 @@
 					}
 				}
 			}
+		},
+		"/posts": {
+			"get": {
+				"operationId": "GetFeedItem",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/FeedItem"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateFeedItem",
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/FeedItem"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/FeedItemCreationParams"
+							}
+						}
+					}
+				}
+			}
 		}
 	},
 	"servers": [
 		{
-			"url": "/api"
+			"url": "/"
 		}
 	]
 }

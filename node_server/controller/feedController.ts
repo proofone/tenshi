@@ -9,6 +9,7 @@ import {
     SuccessResponse,
   } from "tsoa";
 import { FeedItem } from "../models/messages";
+import { FeedItemCreationParams, FeedService } from "./feedService";
 
 
 @Route("posts")
@@ -26,6 +27,6 @@ export class FeedItemController extends Controller {
         @Body() requestBody: FeedItemCreationParams
     ): Promise<FeedItem> {
         this.setStatus(201); // set return status 201
-        return new FeedItemService().create(requestBody);
+        return new FeedService().create(requestBody);
     }
 }
