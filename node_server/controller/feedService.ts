@@ -5,20 +5,23 @@ export type FeedItemCreationParams = Pick<FeedItem, "body" | "created_date">;
 
 export class FeedService {
   public async get(id?: number, name?: string): Promise<FeedItem[]> {
-    let result: FeedItem[] | PromiseLike<FeedItem[]>
+    let result: FeedItem[] | PromiseLike<FeedItem[]> | FeedItem | null
+    console.log(`Get request to feeds, id: ${id}, name: ${name}`)
+    
     if (id || name) {
-      const result = await feedColl.findOne() // TODO: define filter
+      result = await feedColl.findOne() // TODO: define filter
     }
     else {
-      const cursor = feedColl.find() // TODO: params!
+      const cursor = feedColl.find({}) // TODO: params!
       result = cursor.toArray()
     }
+
     return result
   }
 
-  public create(cparams: FeedItemCreationParams): FeedItem {
+  public async create(cparams: FeedItemCreationParams): Promise<FeedItem> {
     return {
-      author_id: 1,
+      author_id: 1, // TODO: author id by request cookie value
       status: "sent",
       ...cparams,
     };

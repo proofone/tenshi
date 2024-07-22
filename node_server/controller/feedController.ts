@@ -18,7 +18,7 @@ export class FeedItemController extends Controller {
     public async getFeedItem(
 
         ): Promise<FeedItem[]> {
-        return [] //new FeedItemService().get();
+        return new FeedService().get();
     }
 
     @SuccessResponse("201", "Created") // Custom success response

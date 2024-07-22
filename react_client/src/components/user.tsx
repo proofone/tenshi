@@ -4,7 +4,7 @@ import {Link, useLoaderData} from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import { usersState } from "../redux/usersSlice";
 import { BsIcon, LoadingSpinner } from "./misc";
-import { useGetUsersQuery, useGetUserByIdQuery } from "../redux/api";
+// import { useGetUsersQuery, useGetUserByIdQuery } from "../redux/openapiStore";
 
 
 interface UserDetailProps {userId: string}
@@ -16,7 +16,7 @@ export const UserListItem = () => {
 export const UserList = () => {
     const usersData = useAppSelector(state => state.users.users)
     const dispatch = useAppDispatch()
-    const { data, error, isLoading } = useGetUsersQuery('')
+    const { data, error, isLoading } = {data: null, error: "", isLoading: false} // useGetUsersQuery('')
 
     error && console.warn(error.toString())
 

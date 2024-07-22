@@ -1,14 +1,23 @@
 import React, { SyntheticEvent } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { FeedItem } from "../../../node_server/models/messages";
-import { useGetMessageQuery, useCreateMessageMutation } from "../redux/openapiStore";
+import { useGetFeedItemQuery, useCreateFeedItemMutation, CreateFeedItemApiArg } from "../redux/openapiStore";
 import { LoadingSpinner } from "./misc";
 
 
-export const NewsFeedPostForm = () => {
+export const NewsFeedPostForm = (loading: boolean) => {
+    const [addPost] = useCreateFeedItemMutation()
+
     function handleSubmit(e: SyntheticEvent) {
         // Prevent the browser from reloading the page
         e.preventDefault();
+        
+        // Compose data object for the new post
+        const formData = new FormData(e.currentTarget as HTMLFormElement);
+        formData.append('created_date', new Date().toISOString());
+        const formJson = Object.fromEntries(formData.entries()) as CreateFeedItemApiArg;
+  
+        addPost(formJson)
     }
     return [
         <Form id='newsfeedpostform' className="my-2" onSubmit={handleSubmit} method='POST'>
@@ -16,41 +25,41 @@ export const NewsFeedPostForm = () => {
             <Form.Control name="text" id="posttext" as="textarea" placeholder="Posztod szövege">
             </Form.Control>
 
-            <Button variant="primary" type="submit">Submit</Button>
+            <Button variant="primary" type="submit" disabled={loading}>Submit</Button>
         </Form>
     ]
 }
 
 export const FeedItemEl = ({ body, author_id, created_date }: FeedItem) => {
-    let postHeader, postFooter = ""
-    postFooter = created_date.toLocaleString()
+    let postHeader = `User ${author_id}`
+    let PostFooter = () => {
+        return <div className="d-flex justify-content-between">
+            <span>{created_date.toLocaleString()}</span>
+            <Button variant="outline-primary my-1" size='sm'>Comment</Button>
+        </div>
+    }
     return <Card className={"newsfeed-post"}>
-    <Card.Header>{postHeader}</Card.Header>
-    <Card.Body>
-      {body}
-    </Card.Body>
-    {postFooter}
-  </Card>
-
+        <Card.Header>{postHeader}</Card.Header>
+        <Card.Body>
+        {body}
+        </Card.Body>
+        <PostFooter />
+    </Card>
 }
 
 export const NewsFeed = () => {
     const {
-        data: posts,
-        isLoading,
-        isSuccess,
-        isError,
-        error
-      } = useGetMessageQuery()
+        data: posts, isLoading, isSuccess, isError, error
+      } = useGetFeedItemQuery()
     let content = [<LoadingSpinner />]
 
     if (isSuccess) {
-        content = posts.map(pprops => <FeedItemEl {...pprops}></FeedItemEl>)
+        content = posts.map((pprops, i) => <FeedItemEl key={i} {...pprops}></FeedItemEl>)
     } else if (isError) {
         content = [<div className="text-danger">{error.toString()}</div>]
         console.log(error)
     }
 
-    return <><NewsFeedPostForm></NewsFeedPostForm>{content}
+    return <><NewsFeedPostForm loading={isLoading}></NewsFeedPostForm>{content}
     </>
 }
