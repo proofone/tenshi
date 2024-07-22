@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const staticPubPath = '/'
+const staticPubPath = '/static'
 
 module.exports = (env) => {
   const entryPath = env.test ? './react_client/src/testApp.js' : './react_client/src/App.js'

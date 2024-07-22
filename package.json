@@ -9,7 +9,7 @@
     "wpdevserve": "webpack serve --config ./react_client/webpack.config.js --watch-options-poll --env test",
     "build": "webpack --config ./react_client/webpack.config.js",
     "build-prod": "webpack --mode=production --config ./react_client/webpack.config.js",
-    "build-api": "cd node_server && tsoa spec-and-routes && tsc",
+    "build-api": "cd node_server && tsoa routes --basePath /api && tsoa spec --basePath /api && tsc",
     "postbuild": "copyfiles -f public/*.bundle.js ../zoldweb/public/js"
   },
   "author": "",

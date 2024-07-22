@@ -34,7 +34,7 @@ export const testUserPrefs: userPreferences = {
   
 }
 
-export const testUsers: brahmaUser[] = [
+export const testUsers = [
     {
         "model": "entities.user",
         "pk": 10,
@@ -125,8 +125,9 @@ export const testUsers: brahmaUser[] = [
             "email": "proof87@gmail.com"
         }
     }
-]
-export const testCommunities: brahmaCommunity[] = [
+] as unknown as brahmaUser[]
+
+export const testCommunities = [
 {
     "model": "entities.community", "pk": 7, "fields":
     { "hometown": "Repcelak" }
@@ -155,4 +156,4 @@ export const testCommunities: brahmaCommunity[] = [
     "model": "entities.community", "pk": 1, "fields":
     { "hometown": "Baktüttös" }
 }
-]
+] as unknown as brahmaCommunity[]
