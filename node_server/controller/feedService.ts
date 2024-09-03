@@ -13,7 +13,7 @@ export class FeedService {
     }
     else {
       const cursor = feedColl.find({}) // TODO: params!
-      result = cursor.toArray()
+      result = cursor.sort('_id', -1).limit(50).toArray()
     }
 
     return result

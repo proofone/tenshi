@@ -1,19 +1,18 @@
-import { WithId } from "mongodb";
+import { ObjectId, WithId } from "mongodb";
 import { Message } from "../models/messages";
 import { messagesColl } from "../mongoDB";
 
 export type MessageCreationParams = Pick<Message, "content" | "convo_id" | "created_date">;
 
 export class MessageService {
-  public async get(id?: number, name?: string): Promise<Message[]> {
+  public async get(id?: number, name?: string) {
     let result: Message | Message[] | PromiseLike<Message[]> | null
     
     if (id || name) {
       result = await messagesColl.findOne<Message>({id: id, name: name}) // TODO: define filter
     }
     else {
-      const cursor = messagesColl.find() // TODO: params!
-      result = cursor.toArray()
+      result = messagesColl.find({}).toArray() // TODO: params!
     }
     
     return result
