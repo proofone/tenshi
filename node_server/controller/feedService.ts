@@ -20,10 +20,15 @@ export class FeedService {
   }
 
   public async create(cparams: FeedItemCreationParams): Promise<FeedItem> {
-    return {
-      author_id: 1, // TODO: author id by request cookie value
-      status: "sent",
-      ...cparams,
-    };
+    let result = await feedColl.insertOne(
+      {
+        author_id: 1, // TODO: author id by request cookie value
+        status: "sent",
+        ...cparams,
+      }      
+    ).catch(err => {
+      result = err
+    })
+    return result 
   }
 }

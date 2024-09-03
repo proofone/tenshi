@@ -1,7 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { brahmaUser } from '../../../node_server/models/user'
-import { Action, Task, Contribution } from '../../../node_server/models/activities'
-import { FeedItem } from '../../../node_server/models/messages'
 
 
 // Define an empty api service to inject OpenAPI endpoints into

@@ -1,16 +1,15 @@
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Provider } from 'react-redux';
 import { ApiProvider } from '@reduxjs/toolkit/query/react'
-import store from './redux/store';
 import { apiSlice } from './redux/api'
 
 import { TenshiRoot } from './components/misc';
 import { NewsFeed } from './components/newsfeed';
 import { UserList, UserDetail } from './components/user';
+import { SearchElement } from './components/search';
+
 import './scss/styles.scss';
 import 'bootstrap-icons/font/bootstrap-icons.scss'
-import { SearchElement } from './components/search';
 
 
 const root = createRoot(document.getElementById('content'))

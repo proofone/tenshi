@@ -52,6 +52,6 @@ RegisterRoutes(app);
 
 //Startup:
 app.listen(PORT, () => {
-    console.log(`Tenshi Server listening on 127.0.0.1:${PORT}`);
+    console.log(`Tenshi Server listening on http://127.0.0.1:${PORT}`);
 
 });

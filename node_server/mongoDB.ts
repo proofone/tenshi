@@ -10,7 +10,7 @@ const mongoClient = new MongoClient(mongoUrl);
 const database = mongoClient.db('zoldweb');
 
 export const messagesColl = database.collection<Message>('messages');
-export const feedColl = database.collection<FeedItem>('newsfeed');
+export const feedColl = database.collection<FeedItem>('posts');
 export const projectsColl = database.collection<Project>('projects');
 export const activitiesColl = database.collection<Action>('activities');
 export const userPrefsColl = database.collection<userPreferences>('userprops');
