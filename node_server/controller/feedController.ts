@@ -15,7 +15,7 @@ import { FeedItemCreationParams, FeedService } from "./feedService";
 @Route("posts")
 export class FeedItemController extends Controller {
     @Get()
-    public async getFeedItem(
+    public async getFeedItems(
 
         ): Promise<FeedItem[]> {
         return new FeedService().get();

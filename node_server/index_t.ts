@@ -9,15 +9,15 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 app.engine('.html', require('ejs').__express);
 app.set('views', publicPath)
-app.use('/static', express.static(publicPath, staticOptions));
+app.use('../public', express.static(publicPath, staticOptions));
 app.use(bodyParser.json())
 
 //Endpoints:
 app.get("/", (req, res) => {
-    res.render("index.html");
+    res.render("../public/index.html");
 });
 app.get("/app/*", (req, res) => {
-    res.render("index.html");
+    res.render("../public/index.html");
 });
 /*
 app.post("/newsfeed/sendpost", (req, res) => {

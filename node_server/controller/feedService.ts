@@ -1,33 +1,45 @@
+import { InsertOneResult, WriteError, WriteConcernError } from "mongodb";
 import { FeedItem } from "../models/messages";
 import { feedColl } from "../mongoDB";
 
 export type FeedItemCreationParams = Pick<FeedItem, "body" | "created_date">;
 
 export class FeedService {
-  public async get(id?: number, name?: string): Promise<FeedItem[]> {
-    let result: FeedItem[] | PromiseLike<FeedItem[]> | FeedItem | null
-    console.log(`Get request to feeds, id: ${id}, name: ${name}`)
+  public async get(
+    mod_ts_gt?: number,
+    mod_ts_lt?: number,
+    size: number = 50
+  ): Promise<FeedItem[]> {
+    let result: PromiseLike<FeedItem[]>
+    console.log(`GET request to feeds, start_ts: ${mod_ts_gt}, end_ts: ${mod_ts_lt}`)
     
-    if (id || name) {
-      result = await feedColl.findOne() // TODO: define filter
-    }
-    else {
-      const cursor = feedColl.find({}) // TODO: params!
-      result = cursor.sort('_id', -1).limit(50).toArray()
-    }
+    const query = {mod_date: {}}
 
-    return result
+    if (typeof mod_ts_gt === "number" && Number.isInteger(mod_ts_gt)) {
+      Object.assign(query.mod_date, {
+        $gt: new Date(mod_ts_gt)
+      })
+    }
+    if (typeof mod_ts_lt === "number" && Number.isInteger(mod_ts_lt)) {
+      Object.assign(query.mod_date, {
+        $lt: new Date(mod_ts_lt)
+      })
+    }
+    
+    const cursor = feedColl.find(query)
+
+    return cursor.sort('_id', -1).limit(size).toArray()
   }
 
-  public async create(cparams: FeedItemCreationParams): Promise<FeedItem> {
+  public async create(cparams: FeedItemCreationParams): Promise<InsertOneResult<FeedItem>|WriteConcernError|WriteError> {
     let result = await feedColl.insertOne(
       {
         author_id: 1, // TODO: author id by request cookie value
         status: "sent",
         ...cparams,
       }      
-    ).catch(err => {
-      result = err
+    ).catch((err: WriteConcernError | WriteError) => {
+      return err
     })
     return result 
   }
