@@ -9,15 +9,15 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 app.engine('.html', require('ejs').__express);
 app.set('views', publicPath)
-app.use('../public', express.static(publicPath, staticOptions));
+app.use('/static', express.static(publicPath, staticOptions));
 app.use(bodyParser.json())
 
 //Endpoints:
 app.get("/", (req, res) => {
-    res.render("../public/index.html");
+    res.render(publicPath + "/public/index.html");
 });
 app.get("/app/*", (req, res) => {
-    res.render("../public/index.html");
+    res.render(publicPath + "/public/index.html");
 });
 /*
 app.post("/newsfeed/sendpost", (req, res) => {
@@ -53,5 +53,6 @@ RegisterRoutes(app);
 //Startup:
 app.listen(PORT, () => {
     console.log(`Tenshi Server listening on http://127.0.0.1:${PORT}`);
+    console.log(`Server settings: \n${publicPath}`);
 
 });

@@ -7,5 +7,5 @@ export const staticOptions: Object = {
   }
 }
 
-export const publicPath: string = path.join(__dirname, '../../public');
+export const publicPath: string = path.join(__dirname, '../../../public');
 

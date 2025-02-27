@@ -7,4 +7,4 @@ exports.staticOptions = {
         res.set('Access-Control-Allow-Origin', '*');
     }
 };
-exports.publicPath = path.join(__dirname, '../../public');
+exports.publicPath = path.join(__dirname, '../../../public');

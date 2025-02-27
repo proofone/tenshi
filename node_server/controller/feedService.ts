@@ -10,8 +10,7 @@ export class FeedService {
     mod_ts_lt?: number,
     size: number = 50
   ): Promise<FeedItem[]> {
-    let result: PromiseLike<FeedItem[]>
-    console.log(`GET request to feeds, start_ts: ${mod_ts_gt}, end_ts: ${mod_ts_lt}`)
+    console.info(`GET request to feeds, start_ts: ${mod_ts_gt}, end_ts: ${mod_ts_lt}`)
     
     const query = {mod_date: {}}
 

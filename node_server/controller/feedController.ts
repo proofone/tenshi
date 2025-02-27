@@ -25,7 +25,7 @@ export class FeedItemController extends Controller {
     @Post()
     public async createFeedItem(
         @Body() requestBody: FeedItemCreationParams
-    ): Promise<FeedItem> {
+    ): Promise<any> {
         this.setStatus(201); // set return status 201
         return new FeedService().create(requestBody);
     }
