@@ -12,7 +12,7 @@ export interface usersState {
 
 // Define the initial state using that type
 const initialState: usersState = {
-    users: testUsers
+    users: testUsers // TODO: create actual initial state
 }
 
 // indexedDB initialization, can be omitted
