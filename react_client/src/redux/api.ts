@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 
 // Define an empty api service to inject OpenAPI endpoints into
-export const apiSlice = createApi({
+export const emptySplitApi = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
   keepUnusedDataFor: 3600,

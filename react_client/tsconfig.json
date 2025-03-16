@@ -1,4 +1,4 @@
-{
+{ // TODO: set directories + compile rules!
   "compilerOptions": {
     "isolatedModules": true,
     "composite": true,

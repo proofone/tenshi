@@ -2,19 +2,19 @@ import { configureStore } from '@reduxjs/toolkit'
 import usersReducer from './usersSlice'
 import actionsReducer from './activitiesSlice'
 import messagesReducer from './messagesSlice'
-import { apiSlice } from './api'
+import { emptySplitApi } from './api'
 
 const store = configureStore({
   reducer: {
     users: usersReducer,
     actions: actionsReducer,
     messages: messagesReducer,
-    [apiSlice.reducerPath]: apiSlice.reducer,
+    [emptySplitApi.reducerPath]: emptySplitApi.reducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(apiSlice.middleware),
+    getDefaultMiddleware().concat(emptySplitApi.middleware),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
