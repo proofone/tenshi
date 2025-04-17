@@ -1,25 +1,34 @@
 { // TODO: set directories + compile rules!
+// TODO: Fix server model type imports
   "compilerOptions": {
     "isolatedModules": true,
     "composite": true,
+
     "noEmit": false,
-    "rootDir": "../",
-    "outDir": "./public/",
+    //"rootDir": "../",
+    "outDir": "../public",
     "declarationDir": "./types/",
+
     "sourceMap": true,
+
     "noImplicitAny": true,
     "suppressExcessPropertyErrors": false,
     "strictNullChecks": true,
+
     "moduleResolution": "node",
     "module": "es6",
     "target": "es5",
     "jsx": "react",
+
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "allowImportingTsExtensions": false,
+//    "allowImportingTsExtensions": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
   },
-  "include": ["../node_server/models/**/*", "../node_server/mongoDB.ts", "../tests/*", "./**/*"],
-  "exclude": ["webpack.config.js", "src/App.ts"]
+  "references": [
+    {"path": "../node_server"}
+  ],
+  "exclude": ["webpack.config.js", "public", "types", "../tests"]
 }
+

@@ -14,10 +14,10 @@ app.use(bodyParser.json())
 
 //Endpoints:
 app.get("/", (req, res) => {
-    res.render(publicPath + "/public/index.html");
+    res.render(publicPath + "/index.html");
 });
 app.get("/app/*", (req, res) => {
-    res.render(publicPath + "/public/index.html");
+    res.render(publicPath + "/index.html");
 });
 /*
 app.post("/newsfeed/sendpost", (req, res) => {

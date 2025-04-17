@@ -1,4 +1,4 @@
-import { Project, Action } from "../node_server/models/activities";
+import { Project, Action } from "../models/activities";
 
 
 export const testProject: Project = {

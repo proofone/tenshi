@@ -1,6 +1,7 @@
 import { InsertOneResult, WriteError, WriteConcernError } from "mongodb";
 import { FeedItem } from "../models/messages";
 import { feedColl } from "../mongoDB";
+import { posts } from "../tests/newsfeed_test_data"
 
 export type FeedItemCreationParams = Pick<FeedItem, "body" | "created_date">;
 
@@ -24,10 +25,10 @@ export class FeedService {
         $lt: new Date(mod_ts_lt)
       })
     }
-    
-    const cursor = feedColl.find(query)
+    return posts
+    // const cursor = feedColl.find(query)
 
-    return cursor.sort('_id', -1).limit(size).toArray()
+    // return cursor.sort('_id', -1).limit(size).toArray()
   }
 
   public async create(cparams: FeedItemCreationParams): Promise<InsertOneResult<FeedItem>|WriteConcernError|WriteError> {

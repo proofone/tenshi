@@ -1,11 +1,11 @@
 import React, { SyntheticEvent } from "react";
 import { Button, Card, Form } from "react-bootstrap";
-import { FeedItem } from "../../../node_server/models/messages";
+import { FeedItem } from "../../types/node_server/models/messages";
 import { useGetFeedItemQuery, useCreateFeedItemMutation, CreateFeedItemApiArg } from "../redux/openapiStore";
 import { LoadingSpinner } from "./misc";
 
 
-export const NewsFeedPostForm = (loading: boolean) => {
+export const NewsFeedPostForm = (loading: any) => {
     const [addPost, { isLoading: isUpdating }] = useCreateFeedItemMutation()
 
     function handleSubmit(e: SyntheticEvent) {
@@ -17,9 +17,9 @@ export const NewsFeedPostForm = (loading: boolean) => {
         formData.append('created_date', new Date().toISOString());
         const formJson = Object.fromEntries(formData) as CreateFeedItemApiArg;
   
-        addPost({pickFeedItemBodyOrCreatedDate: formJson})
+        addPost(formJson)
     }
-    return [
+    return <>
         <Form id='newsfeedpostform' className="my-2" onSubmit={handleSubmit} method='POST'>
             <Form.Label visuallyHidden={true}>Posztod szövege</Form.Label>
             <Form.Control name="body" id="postbody" as="textarea" placeholder="Posztod szövege">
@@ -27,7 +27,7 @@ export const NewsFeedPostForm = (loading: boolean) => {
 
             <Button variant="primary" type="submit" disabled={loading||isUpdating}>Submit</Button>
         </Form>
-    ]
+    </>
 }
 
 export const FeedItemEl = ({ body, author_id, created_date }: FeedItem) => {

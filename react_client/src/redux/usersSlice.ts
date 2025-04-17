@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './store'
 import { createDB } from '../utils/indexedDB'
-import { brahmaUser } from '../../../node_server/models/user'
-import { testUsers }  from '../../../tests/users_test_data'
+import { brahmaUser } from '../../types/node_server/models/user'
 
 
 // Define a type for the slice state  #TODO: use main user type
@@ -12,7 +11,7 @@ export interface usersState {
 
 // Define the initial state using that type
 const initialState: usersState = {
-    users: testUsers // TODO: create actual initial state
+    users: [] // TODO: create actual initial state
 }
 
 // indexedDB initialization, can be omitted

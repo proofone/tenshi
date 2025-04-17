@@ -13,7 +13,7 @@ module.exports = (env) => {
     devtool: 'inline-source-map',
     devServer: {
       static: {
-        directory: '../public',
+        directory: '../../public',
         publicPath: staticPubPath,
       },
       port: 3002,
@@ -36,7 +36,7 @@ module.exports = (env) => {
     ],
     output: { 
       filename: '[name].bundle.js',
-      path: path.resolve(__dirname, '../public'),
+      path: path.resolve(__dirname, '../../public'),
     },
     resolve: {
       extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"],

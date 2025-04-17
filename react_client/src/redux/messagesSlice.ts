@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './store'
-import { Message, FeedItem } from '../../../node_server/models/messages'
+import { Message, FeedItem } from '../../types/node_server/models/messages'
 
 
 // Define a type for the slice state 

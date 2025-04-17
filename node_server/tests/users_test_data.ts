@@ -1,4 +1,4 @@
-import { brahmaCommunity, brahmaUser, userPreferences } from "../node_server/models/user";
+import { brahmaCommunity, brahmaUser, userPreferences } from "../models/user";
 
 
 export const testUserPrefs: userPreferences = {
