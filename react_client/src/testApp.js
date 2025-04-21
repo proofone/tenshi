@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ApiProvider } from '@reduxjs/toolkit/query/react'
-import { apiSlice } from './redux/api'
+import { Provider } from 'react-redux'
+import store from './redux/store'
 
 import { TenshiRoot } from './components/misc';
 import { NewsFeed } from './components/newsfeed';
@@ -91,5 +91,5 @@ export const router = createBrowserRouter([
 });
 
 
-root.render(<ApiProvider api={apiSlice}><RouterProvider router={router}/></ApiProvider>);
+root.render(<Provider store={store}><RouterProvider router={router}/></Provider>);
 

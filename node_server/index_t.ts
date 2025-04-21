@@ -1,6 +1,6 @@
-import path = require('path');
-import express = require("express");
-import bodyParser = require('body-parser');
+const path = require('path');
+const express = require("express");
+const bodyParser = require('body-parser');
 import { staticOptions, publicPath } from './config';
 import { RegisterRoutes } from "./routes/routes";
 
