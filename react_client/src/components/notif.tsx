@@ -5,8 +5,8 @@ import { NavLink } from "react-router-dom";
 import { BsIcon } from "./misc";
 
 
-export const NotifToast = () => {
-    const notifEl = <Toast>Notiiif!</Toast>
+export const NotifToast: FC = (text: string) => {
+    const notifEl = <Toast>{ text }</Toast>
     return notifEl
 }
 

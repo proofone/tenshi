@@ -15,7 +15,7 @@ export const NewsFeedPostForm = (loading: any) => {
         // Compose data object for the new post
         const formData = new FormData(e.currentTarget as HTMLFormElement);
         formData.append('created_date', new Date().toISOString());
-        const formJson = Object.fromEntries(formData) as CreateFeedItemApiArg;
+        const formJson = Object.fromEntries(formData) as unknown as CreateFeedItemApiArg;
   
         addPost(formJson)
     }
@@ -58,7 +58,8 @@ export const NewsFeed = () => {
     if (isSuccess) {
         content = posts.map((pprops: FeedItem, i) => <FeedItemEl key={i} {...pprops}></FeedItemEl>)
     } else if (isError) {
-        content = [<div className="text-danger">{error.error}</div>]
+        const errorText = error.error ?? error
+        content = [<div className="text-danger">{}</div>]
         console.log(error)
     }
 

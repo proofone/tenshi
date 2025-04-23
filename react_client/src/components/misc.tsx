@@ -17,7 +17,7 @@ export const BsIcon = ({cls, size}: BsIProps) => {
     return <i className={"bi bi-" + cls + sizeStr}></i>
 }
 
-export const TenshiRoot = () => {
+export const TenshiRoot: FC = () => {
     
     return <>
         <Outlet /><TenshiNav />
