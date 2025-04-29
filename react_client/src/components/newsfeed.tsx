@@ -58,9 +58,8 @@ export const NewsFeed = () => {
     if (isSuccess) {
         content = posts.map((pprops: FeedItem, i) => <FeedItemEl key={i} {...pprops}></FeedItemEl>)
     } else if (isError) {
-        const errorText = error.error ?? error
-        content = [<div className="text-danger">{}</div>]
-        console.log(error)
+        const errorText = 'status' in error ? error.status : error.message
+        content = [<div className="text-danger">{errorText}</div>]
     }
 
     return <><NewsFeedPostForm loading={isLoading}></NewsFeedPostForm>{content}

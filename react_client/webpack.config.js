@@ -13,7 +13,7 @@ module.exports = (env) => {
     devtool: 'inline-source-map',
     devServer: {
       static: {
-        directory: '../../public',
+        directory: '../../../public',
         publicPath: staticPubPath,
       },
       port: 3002,
@@ -29,7 +29,6 @@ module.exports = (env) => {
     plugins: [
       new HtmlWebpackPlugin({
         template: './react_client/src/base.html',
-        publicPath: staticPubPath,
 
       }),
       new MiniCssExtractPlugin(),
@@ -37,6 +36,7 @@ module.exports = (env) => {
     output: { 
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, '../../public'),
+      publicPath: staticPubPath,
     },
     resolve: {
       extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"],
