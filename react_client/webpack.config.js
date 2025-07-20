@@ -2,21 +2,26 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const staticPubPath = '/static'
+const entryPath = './react_client/src/index.js'
 
 module.exports = (env) => {
-  const entryPath = env.test ? './react_client/src/testApp.js' : './react_client/src/App.js'
+
+  const mode = env.production ? 'production' : 'development'
+
+  const staticPubPath = '/static'
+  const staticLocalPath = path.resolve(__dirname, './public');
 
   return {
-    mode: 'development',
+    mode: mode,
 
-    devtool: 'inline-source-map',
+    devtool: mode === 'development' ? 'inline-source-map' : 'source-map',
+
     devServer: {
       static: {
-        directory: '../../../public',
-        publicPath: staticPubPath,
+        directory: './public',
+        //publicPath: staticPubPath,
       },
-      port: 3002,
+      port: 3004,
       historyApiFallback: true,
     },
     optimization: {
@@ -35,8 +40,8 @@ module.exports = (env) => {
     ],
     output: { 
       filename: '[name].bundle.js',
-      path: path.resolve(__dirname, '../../public'),
-      publicPath: staticPubPath,
+      path: staticLocalPath,
+      publicPath: staticPubPath
     },
     resolve: {
       extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"],
@@ -87,6 +92,11 @@ module.exports = (env) => {
           ]
         }
       ]
-    }
+    },
+    ignoreWarnings: [
+      {
+        file: /\.scss$/
+      }
+    ]
   };
 }
