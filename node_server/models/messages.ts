@@ -4,8 +4,8 @@ interface BaseMessage {
   author_id: number
   parent_id?: string
   status: "draft" | "sent" | "deleted"
-  created_date: Date
-  mod_date?: Date
+  created_date: Date | string // TODO: 1 type!
+  mod_date?: Date | string
   media_ids?: string[]
 }
 interface FeedItemContent{

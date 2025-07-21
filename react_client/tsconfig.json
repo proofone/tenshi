@@ -7,8 +7,8 @@
     // "noEmit": false,
     // "emitDeclarationOnly": true,
     //"rootDir": "../",
-    "outDir": "../../public",
-    "declarationDir": "./types/",
+    "outDir": "./public",
+    //"declarationDir": "./types/",
 
     "sourceMap": true,
 

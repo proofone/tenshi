@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './store'
-import { Action, Task, Contribution } from '../../types/node_server/models/activities'
+import { Action, Task, Contribution } from '../../../node_server/dist/models/activities'
 
 
 // Define a type for the slice state 

@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import {FC, useState} from "react";
 import {Link, useLoaderData} from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../redux/hooks'

@@ -41,7 +41,7 @@ module.exports = (env) => {
     output: { 
       filename: '[name].bundle.js',
       path: staticLocalPath,
-      publicPath: staticPubPath
+      //publicPath: staticPubPath
     },
     resolve: {
       extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"],

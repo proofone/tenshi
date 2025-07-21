@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './store'
 import { createDB } from '../utils/indexedDB'
-import { brahmaUser } from '../../types/node_server/models/user'
+import { brahmaUser } from '../../../node_server/dist/models/user'
 
 
 // Define a type for the slice state  #TODO: use main user type

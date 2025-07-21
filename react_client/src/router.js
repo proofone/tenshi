@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { TenshiRoot } from './components/misc';
 
-// import { NewsFeed } from './components/newsfeed';
-// import { UserList, UserDetail } from './components/user';
-// import { SearchElement } from './components/search';
+import { NewsFeed } from './components/newsfeed';
+import { UserList, UserDetail } from './components/user';
+import { SearchElement } from './components/search';
 
 
 export const router = createBrowserRouter([
@@ -12,8 +12,8 @@ export const router = createBrowserRouter([
         element: <TenshiRoot />,
         /*loader: async ({ params }) => {
             const response = await fetch(`${appOptions.apiurl_public}`);
-            return await response.json();}*/
-        /*        errorElement: <ErrorPage />,
+            return await response.json();}
+                errorElement: <ErrorPage />,*/
                 children: [
         
                     {
@@ -76,8 +76,8 @@ export const router = createBrowserRouter([
                         loader: ({ params }) => params
                 //        errorElement: <ErrorPage />,
                     },
-                ]*/
+                ]
     },
 ], {
-    basename: "/app",
+    //basename: "/app",
 });

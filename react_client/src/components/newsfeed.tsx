@@ -1,6 +1,7 @@
-import React, { SyntheticEvent } from "react";
+import * as React from "react";
+import { SyntheticEvent } from "react";
 import { Button, Card, Form } from "react-bootstrap";
-import { FeedItem } from "../../types/node_server/models/messages";
+import { FeedItem } from "../../../node_server/dist/models/messages";
 import { useGetFeedItemQuery, useCreateFeedItemMutation, CreateFeedItemApiArg } from "../redux/openapiStore";
 import { LoadingSpinner } from "./misc";
 

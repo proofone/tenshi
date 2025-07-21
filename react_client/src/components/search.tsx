@@ -1,4 +1,5 @@
-import React, { SyntheticEvent } from "react";
+import * as React from "react";
+import { SyntheticEvent } from "react";
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import Button from "react-bootstrap/Button";

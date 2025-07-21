@@ -25,8 +25,15 @@
 						]
 					},
 					"created_date": {
-						"type": "string",
-						"format": "date-time"
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
 					},
 					"mod_date": {
 						"type": "string",
@@ -67,8 +74,15 @@
 						"type": "string"
 					},
 					"created_date": {
-						"type": "string",
-						"format": "date-time"
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "string",
+								"format": "date-time"
+							}
+						]
 					}
 				},
 				"required": [
@@ -128,8 +142,15 @@
 						]
 					},
 					"created_date": {
-						"type": "string",
-						"format": "date-time"
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
 					},
 					"mod_date": {
 						"type": "string",
@@ -178,8 +199,15 @@
 						]
 					},
 					"created_date": {
-						"type": "string",
-						"format": "date-time"
+						"anyOf": [
+							{
+								"type": "string",
+								"format": "date-time"
+							},
+							{
+								"type": "string"
+							}
+						]
 					},
 					"mod_date": {
 						"type": "string",
@@ -235,8 +263,15 @@
 			"Pick_FeedItem.body-or-created_date_": {
 				"properties": {
 					"created_date": {
-						"type": "string",
-						"format": "date-time"
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "string",
+								"format": "date-time"
+							}
+						]
 					},
 					"body": {
 						"type": "string"
